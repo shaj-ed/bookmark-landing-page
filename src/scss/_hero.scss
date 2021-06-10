@@ -1,0 +1,107 @@
+@use 'variables' as *;
+@use 'mixins' as m;
+
+.hero {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+
+  @include m.responsive-size-up(medium) {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5rem;
+  }
+
+  @include m.responsive-size-up(xlarge) {
+    gap: 11rem;
+  }
+
+  &__image {
+    margin-left: -3rem;
+    width: 101vw;
+    position: relative;
+
+    img {
+      width: 100%;
+    }
+
+    &::before {
+      @include m.bgIllustrator(20%, -100%);
+      border-bottom-left-radius: 20rem;
+      border-top-left-radius: 20rem;
+    }
+
+    @include m.responsive-size-up(large) {
+      width: 105vw;
+      margin-right: -5rem;
+    }
+
+    @include m.responsive-size-up(xlarge) {
+      width: 110vw;
+      margin-right: -5rem;
+    }
+  }
+
+  &__content {
+    margin-top: 8rem;
+    text-align: center;
+
+    @include m.responsive-size-up(medium) {
+      margin-top: 0;
+      text-align: left;
+    }
+  }
+
+  &__headline {
+    font-size: 3rem;
+
+    @include m.responsive-size-up(large) {
+      font-size: 4rem;
+    }
+  }
+
+  &__paragraph {
+    margin: 2rem 0 3rem 0;
+
+    @include m.responsive-size-up(medium) {
+      margin: 3rem 0 4rem 0;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    @include m.responsive-size-up(medium) {
+      justify-content: start;
+    }
+  }
+
+  &__button {
+    padding: 1.5rem;
+
+    @include m.responsive-size-up(small) {
+      padding: 1.5rem 2.5rem;
+    }
+
+    &--bluish {
+      @include m.button-mix($soft-blue, 1.4rem);
+    }
+
+    &--light {
+      @include m.button-mix(lighten($grayish-blue, 35%), 1.4rem);
+      color: $very-dark-blue;
+
+      &:hover {
+        color: $very-dark-blue;
+        border-color: $very-dark-blue;
+        box-shadow: 1px 8px 13px -8px darken($very-dark-blue, 0.3);
+      }
+    }
+  }
+}

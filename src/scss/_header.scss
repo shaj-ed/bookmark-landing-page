@@ -1,0 +1,131 @@
+@use 'variables' as *;
+@use 'mixins' as m;
+
+.header {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__logo {
+    z-index: 100;
+  }
+
+  &__hamburger {
+    display: none;
+    z-index: 100;
+
+    @include m.responsive-size-down(xmedium) {
+      display: block;
+    }
+
+    &--close {
+      display: none;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 4.5rem;
+    transition: $transition-all;
+
+    @include m.responsive-size-down(xmedium) {
+      padding: 12rem 2.8rem 2.8rem 2.8rem;
+      flex-direction: column;
+      gap: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+      background-color: rgba($very-dark-blue, 0.95);
+      z-index: 10;
+    }
+  }
+
+  &__link {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: $very-dark-blue;
+
+    @include m.responsive-size-down(xmedium) {
+      &:first-of-type {
+        padding-top: 3rem;
+        border-top: 0.1rem solid rgba($grayish-blue, 0.5);
+      }
+
+      width: 100%;
+      font-size: 1.8rem;
+      padding: 2.5rem 0;
+      text-align: center;
+      border-bottom: 0.1rem solid rgba($grayish-blue, 0.5);
+    }
+  }
+
+  &__button {
+    padding: 1.2rem 3.5rem;
+    @include m.button-mix($soft-red, 1.5rem);
+
+    @include m.responsive-size-down(xmedium) {
+      font-size: 1.8rem;
+      width: 100%;
+      background-color: transparent;
+      border: 0.2rem solid #fff;
+      margin-top: 3rem;
+    }
+  }
+
+  &__link,
+  &__button {
+    text-transform: uppercase;
+    letter-spacing: 0.19rem;
+
+    &:hover {
+      color: $soft-red;
+    }
+
+    @include m.responsive-size-down(xmedium) {
+      color: #ffffff;
+    }
+  }
+
+  &__social {
+    display: none;
+
+    @include m.responsive-size-down(xmedium) {
+      margin-top: auto;
+      @include m.social-icon();
+    }
+  }
+
+  // Show Navigation at mobile size
+  @include m.responsive-size-down(xmedium) {
+    &.show-nav svg path,
+    &.show-nav svg circle {
+      fill: #ffffff;
+    }
+
+    &.show-nav svg .mark {
+      fill: $very-dark-blue;
+    }
+
+    &.show-nav &__nav {
+      opacity: 1;
+      height: 100vh;
+      pointer-events: visible;
+    }
+
+    &.show-nav &__hamburger--close {
+      display: block;
+      background-color: transparent;
+    }
+
+    &.show-nav &__hamburger--open {
+      display: none;
+    }
+  }
+}

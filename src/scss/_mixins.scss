@@ -1,0 +1,80 @@
+@use 'variables' as *;
+
+// Breakpoints
+$breakpoints: (
+  "small": 33rem,
+  "medium": 48rem,
+  "xmedium": 52rem,
+  "large": 62rem,
+  "xlarge": 75rem,
+  "xxlarge": 87.5rem,
+);
+
+// Responsive media
+@mixin responsive-size-up($size) {
+  $breakpoint-size: map-get($breakpoints, $size);
+
+  @media (min-width: $breakpoint-size) {
+    @content;
+  }
+}
+
+@mixin responsive-size-down($size) {
+  $breakpoint-size: map-get($breakpoints, $size);
+
+  @media (max-width: $breakpoint-size) {
+    @content;
+  }
+}
+
+// Button
+@mixin button-mix($bg, $fs) {
+  border-radius: 0.5rem;
+  box-shadow: $shadow-button;
+  background-color: $bg;
+  color: #ffffff;
+  border: 0.2rem solid $bg;
+  font-size: $fs;
+  font-weight: 500;
+  transition: $transition-all;
+
+  &:hover {
+    background-color: #ffffff;
+    color: $bg;
+    box-shadow: 1px 8px 13px -8px darken($bg, 0.5);
+  }
+}
+
+// Illustrator Background
+@mixin bgIllustrator($left, $right) {
+  content: "";
+  position: absolute;
+  height: 90%;
+  top: 20%;
+  left: $left;
+  right: $right;
+  background-color: $soft-blue;
+  z-index: -1;
+
+  @include responsive-size-up(xlarge) {
+    height: 35.5rem;
+  }
+}
+
+// Social Icons //
+@mixin social-icon() {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+
+  i {
+    font-size: 2.5rem;
+    color: #ffffff;
+  }
+
+  li:hover {
+    i {
+      color: $soft-red;
+    }
+  }
+}

@@ -1,0 +1,71 @@
+@use 'variables' as *;
+@use 'mixins' as m;
+
+.download-section {
+  text-align: center;
+  padding-bottom: 10rem;
+
+  @include m.responsive-size-up(medium) {
+    padding-top: 3.5rem;
+    padding-bottom: 15rem;
+  }
+
+  &__paragraph {
+    max-width: 54.5rem;
+    margin: 1.6rem auto 4.5rem auto;
+  }
+}
+
+// Browser Card
+.browsers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+
+  .browser {
+    width: 100%;
+    max-width: 29rem;
+    padding: 4rem 2.5rem 2rem 2.5rem;
+    box-shadow: $shadow-card;
+    border-radius: 1rem;
+    overflow: hidden;
+
+    &__title {
+      margin: 4.5rem 0 0.5rem 0;
+      font-size: 2.2rem;
+    }
+
+    &__button {
+      display: block;
+      margin-top: 6.5rem;
+      @include m.button-mix($soft-blue, 1.3rem);
+      width: 100%;
+      padding: 1.2rem;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        height: 0.4rem;
+        top: -3rem;
+        left: -20%;
+        right: -20%;
+        background: url("../images/bg-dots.svg");
+        z-index: 100;
+      }
+    }
+
+    @include m.responsive-size-up(xmedium) {
+      align-self: flex-start;
+
+      &:nth-of-type(2) {
+        margin-top: 3.5rem;
+      }
+
+      &:nth-of-type(3) {
+        margin-top: 6.5rem;
+      }
+    }
+  }
+}

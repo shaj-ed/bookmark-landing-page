@@ -1,0 +1,80 @@
+@use 'variables' as *;
+@use 'mixins' as m;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: $font-main;
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+header,
+section,
+footer {
+  padding-left: 2.8rem;
+  padding-right: 2.8rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: $very-dark-blue;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 2.2rem;
+
+  @include m.responsive-size-up(medium) {
+    font-size: 3.5rem;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+p {
+  line-height: 1.5;
+  color: $grayish-blue;
+
+  &.large {
+    font-size: 1.7rem;
+  }
+
+  &.medium {
+    font-size: 1.6rem;
+  }
+
+  &.small {
+    font-size: 1.5rem;
+  }
+}
+
+button {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  font-family: $font-main;
+}
+
+.container {
+  width: 100%;
+  max-width: 110rem;
+  margin: 0 auto;
+}

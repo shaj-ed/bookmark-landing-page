@@ -1,0 +1,163 @@
+@use 'variables' as *;
+@use 'mixins' as m;
+
+.features-section {
+  padding-top: 12rem;
+  padding-bottom: 12rem;
+  text-align: center;
+
+  &__paragraph {
+    max-width: 52rem;
+    margin: 1.8rem auto 0 auto;
+  }
+
+  &__tabs {
+    max-width: 70rem;
+    margin: 3.8rem auto 6rem auto;
+    display: flex;
+    flex-direction: column;
+
+    @include m.responsive-size-up(medium) {
+      flex-direction: row;
+      justify-content: space-around;
+      border-bottom: 0.1rem solid rgba($grayish-blue, 0.5);
+      padding-bottom: 2rem;
+      margin: 7rem auto 7rem auto;
+    }
+
+    .tab {
+      background-color: transparent;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: $grayish-blue;
+      padding: 1.8rem;
+      border-top: 0.1rem solid rgba($grayish-blue, 0.5);
+      position: relative;
+      transition: $transition-all;
+
+      &:hover {
+        color: $soft-red;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0.3rem;
+        background-color: $soft-red;
+        border-radius: 0.5rem;
+        transition: $transition-all;
+
+        @include m.responsive-size-up(medium) {
+          bottom: -2rem;
+        }
+      }
+
+      &:last-of-type {
+        border-bottom: 0.1rem solid rgba($grayish-blue, 0.5);
+      }
+
+      @include m.responsive-size-up(medium) {
+        padding: 0;
+        border-top: 0;
+
+        &:last-of-type {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    .feature {
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+      visibility: hidden;
+      transform: scale(0);
+      pointer-events: none;
+      transition: $transition-all;
+
+      &.show {
+        visibility: visible;
+        transform: scale(0.9);
+        pointer-events: visible;
+      }
+    }
+  }
+}
+
+// While tab active
+.tab.active {
+  color: $very-dark-blue;
+}
+
+.tab.active.tab::after {
+  width: 15rem;
+
+  @include m.responsive-size-up(medium) {
+    width: 165%;
+  }
+}
+
+// Main Features
+.feature {
+  @include m.responsive-size-up(medium) {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  @include m.responsive-size-up(medium) {
+    gap: 12.5rem;
+  }
+
+  &__image {
+    position: relative;
+
+    @include m.responsive-size-up(medium) {
+      flex: 2;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    &::before {
+      @include m.bgIllustrator(-100%, 20%);
+      top: 30%;
+      border-bottom-right-radius: 20rem;
+      border-top-right-radius: 20rem;
+    }
+  }
+
+  &__content {
+    margin-top: 10rem;
+
+    @include m.responsive-size-up(small) {
+      margin-top: 15rem;
+    }
+
+    @include m.responsive-size-up(medium) {
+      flex: 1.5;
+      margin-top: 0;
+      text-align: left;
+    }
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+  }
+
+  &__button {
+    margin-top: 3rem;
+    @include m.button-mix($soft-blue, 1.4rem);
+    padding: 1.2rem 2rem;
+  }
+}

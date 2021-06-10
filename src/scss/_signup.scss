@@ -1,0 +1,129 @@
+@use 'variables' as *;
+@use 'mixins' as m;
+
+.sign-up {
+  text-align: center;
+  padding-top: 6.5rem;
+  padding-bottom: 6.5rem;
+  background-color: $soft-blue;
+  color: #fff;
+
+  @include m.responsive-size-up(medium) {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  &__count {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 0.4rem;
+    font-weight: 400;
+  }
+
+  &__title {
+    max-width: 45rem;
+    color: #fff;
+    margin: 1.5rem auto 2.5rem auto;
+
+    @include m.responsive-size-up(medium) {
+      margin: 4rem auto 3rem auto;
+    }
+  }
+
+  &__form {
+    width: 100%;
+    max-width: 45rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @include m.responsive-size-up(medium) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__input-group {
+    width: 100%;
+    position: relative;
+
+    @include m.responsive-size-up(medium) {
+      flex: 1;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    outline: 0;
+    padding: 1.6rem 1.8rem;
+    font-size: 1.4rem;
+    border: 0;
+    border-radius: 0.5rem;
+    box-shadow: $shadow-button;
+    font-family: $font-main;
+    font-weight: 400;
+
+    &::placeholder {
+      font-family: $font-main;
+      font-size: 1.4rem;
+      opacity: 0.6;
+    }
+  }
+
+  &__button {
+    @include m.button-mix($soft-red, 1.4rem);
+    padding: 1.5rem;
+
+    @include m.responsive-size-up(medium) {
+      align-self: flex-start;
+      padding: 1.5rem 2.2rem;
+    }
+  }
+
+  // Error
+  &__msg-icon {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: none;
+  }
+
+  &__msg-text {
+    display: none;
+    text-align: left;
+    padding: 1rem 1.2rem;
+    background-color: $soft-red;
+    font-size: 1.2rem;
+    font-style: italic;
+    border-radius: 0.5rem;
+  }
+}
+
+// Show error
+.sign-up__input-group.error-show {
+  .sign-up {
+    &__input {
+      border: 0.2rem solid $soft-red;
+    }
+
+    &__msg-text,
+    &__msg-icon {
+      display: block;
+    }
+  }
+}
+
+// .Sucess
+.sign-up__input-group.success {
+  .sign-up {
+    &__input {
+      border: 0.2rem solid $very-dark-blue;
+    }
+
+    &__msg-text {
+      display: block;
+      background-color: $very-dark-blue;
+    }
+  }
+}
